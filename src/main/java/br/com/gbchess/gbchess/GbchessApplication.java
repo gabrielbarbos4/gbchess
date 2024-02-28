@@ -1,7 +1,5 @@
 package br.com.gbchess.gbchess;
 
-import br.com.gbchess.gbchess.enums.TeamEnum;
-import br.com.gbchess.gbchess.model.*;
 import br.com.gbchess.gbchess.model.game.Game;
 import br.com.gbchess.gbchess.model.player.Player;
 import org.springframework.boot.SpringApplication;
@@ -31,7 +29,16 @@ public class GbchessApplication {
 		//horse move
 		game.movePiece(0, 1, 3, 2);
 
-		System.out.println();
+		//move pawn first column line 7
+		game.movePiece(6, 0, 5, 0);
+		game.movePiece(5, 0, 4, 0);
+		game.movePiece(4, 0, 3, 0);
+		game.movePiece(3, 0, 2, 0);
+
+		//tower move
+		game.movePiece(7, 0, 3, 0);
+		game.show();
+		game.movePiece(3, 0, 3, 2);
 
 		game.show();
 	}

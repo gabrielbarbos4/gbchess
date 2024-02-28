@@ -18,6 +18,32 @@ public class Tower extends Piece {
 
     @Override
     public boolean validateMove(int preX, int posX, int preY, int posY, Piece[][] board, final int boardSize) {
-        return false;
+        return preY == posY ? moveHorizontally(preX, preY, posX, board) : moveVertically(preX, preY, posY, board);
+    }
+
+    private boolean moveHorizontally(int preX, int preY, int posX, Piece[][] board) {
+        int start = Math.min(preX, posX);
+        int end = Math.max(preX, posX);
+
+        for (int i = start + 1; i < end; i++) {
+            if (board[i][preY].getCode() != PieceCodeEnum.EMPTY) {
+                return false;
+            }
+        }
+
+        return board[posX][preY].getTeam() != team;
+    }
+
+    private boolean moveVertically(int preX, int preY, int posY, Piece[][] board) {
+        int start = Math.min(preY, posY);
+        int end = Math.max(preY, posY);
+
+        for (int i = start + 1; i < end; i++) {
+            if (board[preX][i].getCode() != PieceCodeEnum.EMPTY) {
+                return false;
+            }
+        }
+
+        return board[preX][posY].getTeam() != team;
     }
 }

@@ -17,6 +17,16 @@ public class Game {
     private Player player1;
     private Player player2;
 
+    public void initBoard() {
+        placeEmptyPieces();
+        placePawns();
+        placeTowers();
+        placeBishops();
+        placeHorses();
+        placeKings();
+        placeQueens();
+    }
+
     public void show() {
         System.out.println();
         for (int i = 0; i < board.length; i++) {
@@ -47,16 +57,6 @@ public class Game {
 
     private boolean validateMoviment(Piece piece, int preX, int preY, int posX, int posY) {
         return piece.validateMove(preX, posX, preY, posY, board, BOARD_SIZE);
-    }
-
-    public void initBoard() {
-        placeEmptyPieces();
-        placePawns();
-        placeTowers();
-        placeBishops();
-        placeHorses();
-        placeKings();
-        placeQueens();
     }
 
     private void placeEmptyPieces() {
