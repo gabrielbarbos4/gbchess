@@ -18,19 +18,25 @@ public class Game {
     private Player player2;
 
     public void show() {
+        System.out.println();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i][j].getName() + "\t");
+                final String color = board[i][j].getTeam() == TeamEnum.NONE
+                    ? "\u001B[37m"
+                    : (board[i][j].getTeam() == TeamEnum.WHITE ? "\u001B[34m" : "\u001B[31m");
+
+                System.out.print(color + board[i][j].getName() + "\u001B[0m" + "\t");
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void movePiece(int preX, int preY, int posX, int posY) {
         try {
             Piece piece = board[preX][preY];
 
-            if(validateMoviment(piece, preX, preY, posX, posY)) {
+            if (validateMoviment(piece, preX, preY, posX, posY)) {
                 board[posX][posY] = piece;
                 board[preX][preY] = new EmptyPiece();
             }
@@ -40,8 +46,6 @@ public class Game {
     }
 
     private boolean validateMoviment(Piece piece, int preX, int preY, int posX, int posY) {
-        System.out.println(piece.getClass());
-
         return piece.validateMove(preX, posX, preY, posY, board, BOARD_SIZE);
     }
 

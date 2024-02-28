@@ -19,8 +19,20 @@ public class GbchessApplication {
 		);
 
 		game.show();
+		//pawn move
 		game.movePiece(1, 1, 3, 1);
+		game.show();
+		game.movePiece(6, 2, 5, 2);
+		game.show();
+		game.movePiece(5, 2, 4, 2);
+		game.show();
+		game.movePiece(3, 1, 4, 2);
+		game.show();
+		//horse move
+		game.movePiece(0, 1, 3, 2);
+
 		System.out.println();
+
 		game.show();
 	}
 
